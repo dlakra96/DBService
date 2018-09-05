@@ -36,14 +36,14 @@ public String add(@RequestBody Quote quote)
 	return new String("quote inserted successfully");
 }
 
-@PostMapping("/db/delete/{quote}")
+@GetMapping("/db/delete/{quote}")
 public String delete(@PathVariable("quote") String quote)
 {
 	stockRepo.deleteAll(stockRepo.findByQuote(quote));
 	return "record deleted successfully !!!!";
     
 }
-@PostMapping("/stats/{quote}")
+@GetMapping("/stats/{quote}")
 public String info(@PathVariable("quote") String quote)
 {Stock stock=null;
 	try {

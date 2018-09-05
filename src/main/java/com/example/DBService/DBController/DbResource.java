@@ -1,6 +1,7 @@
 package com.example.DBService.DBController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -44,7 +45,7 @@ public String delete(@PathVariable("quote") String quote)
     
 }
 @GetMapping("/stats/{quote}")
-public String info(@PathVariable("quote") String quote)
+public String info(@PathVariable("quote") String quote) throws IOException
 {Stock stock=null;
 	try {
 		stock=YahooFinance.get(quote);
@@ -54,7 +55,7 @@ public String info(@PathVariable("quote") String quote)
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	return stock.getStats().toString();
+	return stock.toString();
 
 }
 /*
@@ -67,11 +68,29 @@ public String update(@PathVariable("userName") String userName,@PathVariable("ne
 
 }
 	*/
-@PostMapping("/db/find/{quote}")
+@GetMapping("/db/find/{quote}")
 public List<Quote> returnQuotes(@PathVariable("quote") String quote)
 {
 	logger.info("returning records matched against the quote passed as the parameter.................");
 	return stockRepo.findAllByQuote(quote);
 
 }
+@GetMapping("/db/stocksInfo/{username}")
+public List<Stock> returnStocksInfo(@PathVariable("username") String username)
+{
+	List<Stock> stocks=new ArrayList<>();
+	List<Quote> quotes=stockRepo.findByUserName(username);
+	for(Quote q:quotes)
+	{
+		try {
+		stocks.add(YahooFinance.get(q.getQuote()));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+return stocks;
+}
+
 }

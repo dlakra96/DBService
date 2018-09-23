@@ -23,6 +23,13 @@ public class DBResourceRest {
 	@Autowired
 	private StockQuoteRepository stockRepo;
 
+	/*
+	@GetMapping("/")
+	public String authSuccess()
+	{
+		return "Authentication successfull";
+	}*/
+	
 	@PostMapping("/input")
 	public Stock returnStockDetails(@ModelAttribute("new_quote") Quote quote)
 	{Stock stock=null;
@@ -108,5 +115,6 @@ public class DBResourceRest {
 		}
 	return stocks;
 	}
+	
 
 }

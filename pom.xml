@@ -58,6 +58,26 @@
         <artifactId>tomcat-embed-jasper</artifactId>
         <scope>provided</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>5.1.0.RELEASE</version>
+</dependency>
+
+    
 	</dependencies>
 
 	<build>
